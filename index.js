@@ -116,12 +116,14 @@ class Modal extends Component {
       } else {
         Animated.timing(this.state.opacity, {
           toValue,
-          duration: animationDuration
+          duration: animationDuration,
+          useNativeDriver: false
         }).start();
 
         Animated.spring(this.state.scale, {
           toValue: toValue ? 1 : 0.8,
-          tension: animationTension
+          tension: animationTension,
+          useNativeDriver: false
         }).start(() => this.executeCallbacks(toValue === 1));
       }
     }
@@ -183,7 +185,7 @@ class Modal extends Component {
   };
 
   animateOffset(offset) {
-    Animated.spring(this.state.offset, { toValue: offset }).start();
+    Animated.spring(this.state.offset, { toValue: offset, useNativeDriver: false }).start();
   }
 }
 
